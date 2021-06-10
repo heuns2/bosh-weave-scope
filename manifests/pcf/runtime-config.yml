@@ -1,7 +1,7 @@
 ---
 releases:
 - name: weave-scope
-  version: <%= `git -C ~/workspace/weave-scope-release describe --abbrev=0 --tags | tr -d 'v'` %>
+  version: 0.0.17
 
 addons:
 - name: scope-probe
@@ -25,10 +25,9 @@ addons:
         scope:
           probe:
             garden:
-              network: unix
               addr: /var/vcap/data/garden/garden.sock
             cf:
-              api_url: https://<CF-API-URL>
-              client_id: scope-cf-admin-ro
-              client_secret: scope-cf-admin-ro-secret
+              api_url: https://api.sys.leedh.cloud
+              client_id: scope-admin
+              client_secret: scope-admin
               skip_ssl_verify: true
