@@ -1,0 +1,19 @@
+---
+name: scope_app
+
+templates:
+  ctl.erb: bin/ctl
+
+packages:
+- scope
+
+provides:
+- name: weave_scope_app
+  type: http
+  properties:
+  - weave.scope.app.http.port
+
+properties:
+  weave.scope.app.http.port:
+    description: Port the Weave Scope app uses to listen for HTTP requests
+    default: 4040

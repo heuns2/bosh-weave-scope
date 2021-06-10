@@ -1,0 +1,44 @@
+---
+name: weave-scope
+director_uuid: <%= `bosh status --uuid` %>
+releases:
+- name: weave-scope
+  version: latest
+stemcells:
+- alias: default
+  os: <%= `bosh stemcells | grep agent | cut -d'|' -f3 | tr -d ' ' | uniq | head -n1` %>
+  version: latest
+instance_groups:
+- name: scope_app
+  azs:
+  - <SCOPE-APP-AZ>
+  instances: 1
+  lifecycle: service
+  jobs:
+  - name: scope_app
+    release: weave-scope
+    consumes: {}
+    provides:
+      weave_scope_app:
+        as: weave_scope_app
+        shared: true
+  vm_type: <SCOPE-APP-VM-TYPE>
+  stemcell: default
+  properties: {}
+  update:
+    serial: true
+    max_in_flight: 1
+  networks:
+  - name: <SCOPE-APP-NETWORK>
+    default:
+    - dns
+    - gateway
+  persistent_disk_type: '1024'
+  vm_extensions: []
+update:
+  canaries: 1
+  canary_watch_time: 30000-300000
+  update_watch_time: 30000-300000
+  max_in_flight: 1
+  max_errors: 2
+  serial: true

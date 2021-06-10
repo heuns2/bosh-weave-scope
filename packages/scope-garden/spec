@@ -1,0 +1,8 @@
+---
+name: scope-garden
+
+dependencies:
+- scope-go
+
+files:
+- github.com/st3v/scope-garden/**/*.go

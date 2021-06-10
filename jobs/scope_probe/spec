@@ -1,0 +1,28 @@
+---
+name: scope_probe
+
+templates:
+  probe_ctl.erb: bin/probe_ctl
+  probe_bosh_ctl.erb: bin/probe_bosh_ctl
+
+packages:
+- scope
+- scope-bosh
+- scope-jq
+
+consumes:
+- name: weave_scope_app
+  type: http
+  optional: true
+
+properties:
+  weave.scope.probe.target_addr:
+    description: Target address for probe reports.
+  weave.scope.probe.service_token:
+    description: Service token for Weave Cloud
+  weave.scope.probe.plugins.root:
+    description: Scope probe plugins root
+    default: /var/vcap/data/scope/plugins
+  weave.scope.probe.bosh.job_spec_path:
+    description: Path to Bosh job spec
+    default: /var/vcap/bosh/spec.json
