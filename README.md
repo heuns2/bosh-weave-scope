@@ -254,4 +254,13 @@ Succeeded
 
 - CONTAINERS
 
+![weave-1][weave-1]
+
+[weave-1]:./images/weave-image-1.PNG
+
+
 - HOSTS
+
+![weave-2][weave-2]
+
+[weave-2]:./images/weave-image-2.PNG
